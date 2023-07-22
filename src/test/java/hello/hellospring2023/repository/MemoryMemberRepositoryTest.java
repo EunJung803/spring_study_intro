@@ -2,13 +2,21 @@ package hello.hellospring2023.repository;
 
 import hello.hellospring2023.domain.Member;
 import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class MemoryMemberRepositoryTest {
 
-    MemberRepository repository = new MemoryMemberRepository();
+    MemoryMemberRepository repository = new MemoryMemberRepository();
+
+    // test가 실행되고 끝날 때 마다 저장소를 싹 지워주기
+    @AfterEach
+    public void afterEach() {
+        repository.clearStore();
+    }
 
     @Test
     public void save() {
